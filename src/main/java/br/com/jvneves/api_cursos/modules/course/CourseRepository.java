@@ -6,5 +6,7 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CourseRepository extends JpaRepository<CourseEntity, UUID> {
-  Optional<CourseRepository> findByName(String name);
+  Optional<CourseEntity> findByName(String name);
+
+  Optional<CourseEntity> findById(UUID id);
 }

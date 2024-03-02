@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,6 +28,9 @@ public class CourseEntity {
   private enum Active {
     TRUE, FALSE;
   }
+
+  @Enumerated(EnumType.STRING)
+  private Active active;
 
   @CreationTimestamp
   private LocalDateTime created_at;
