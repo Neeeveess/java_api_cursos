@@ -25,7 +25,7 @@ public class CourseEntity {
 
   private String category;
 
-  private enum Active {
+  public enum Active {
     TRUE, FALSE;
   }
 

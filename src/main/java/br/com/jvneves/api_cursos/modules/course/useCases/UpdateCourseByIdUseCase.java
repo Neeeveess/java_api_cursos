@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.jvneves.api_cursos.modules.course.CourseEntity;
 import br.com.jvneves.api_cursos.modules.course.CourseRepository;
+import br.com.jvneves.api_cursos.modules.course.CourseEntity.Active;
 
 @Service
 public class UpdateCourseByIdUseCase {
@@ -28,5 +29,17 @@ public class UpdateCourseByIdUseCase {
     }
     return null;
 
+  }
+
+  public CourseEntity PartialUpdateById(UUID id, String active) {
+    var course = courseRepository.findById(id);
+    if (course.isPresent()) {
+      CourseEntity entity = course.get();
+      Active activeValue = Active.valueOf(active.toUpperCase());
+      entity.setActive(activeValue);
+      entity.setUpdated_at(LocalDateTime.now());
+      return this.courseRepository.save(entity);
+    }
+    return null;
   }
 }
